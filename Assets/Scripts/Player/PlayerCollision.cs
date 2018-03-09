@@ -45,7 +45,7 @@ public class PlayerCollision : MonoBehaviour
             Destroy(collision.gameObject.transform.parent.gameObject);
             GameObject manager = GameObject.Find("GameManager");
             GameManager managerScript = manager.GetComponent<GameManager>();
-            managerScript.score -= 100;
+            managerScript.score -= 500;
 
             //GameObject.Destroy(gameObject);
         }

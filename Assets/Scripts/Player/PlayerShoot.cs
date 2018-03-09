@@ -10,8 +10,6 @@ public class PlayerShoot : MonoBehaviour {
     public AudioClip shootingSound;
 
     public Camera cameraSource;
-    private Vector3 mouseTarget;
-    private float mx, my;
     private Plane groundPlane;
 
     public float pitchRange;
@@ -39,9 +37,6 @@ public class PlayerShoot : MonoBehaviour {
         {
             shootAudioSource.pitch = Random.Range(originalPitch - pitchRange, originalPitch + pitchRange);
             if (Input.GetButton("Fire1")) {
-                //mouseTarget = cameraSource.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cameraSource.nearClipPlane));
-                mx = Input.mousePosition.x;
-                my = Input.mousePosition.y;
 
                 Fire();
                 //Debug.Log("Mouse Click: X = " + mouseTarget.x + "; Y = " + mouseTarget.y);
