@@ -2,23 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour {
+public class EnemySpawner : MonoBehaviour
+{
     public GameObject spawnerEntity;
     public float spawnFrequency;
     public float spawnerHealth;
     public int maxAmount;
-    private int currentAmount;
+    public int currentAmount;
     private float spawnTimer;
+
     //private GameObject[] childEntity;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         currentAmount = 0;
-     spawnTimer = spawnFrequency;
+        spawnTimer = spawnFrequency;
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
         spawnTimer -= Time.deltaTime;
         if (spawnTimer < 0)
@@ -30,6 +33,11 @@ public class EnemySpawner : MonoBehaviour {
                 currentAmount++;
             }
             spawnTimer = spawnFrequency;
+        }
+
+        if (spawnerHealth <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }
