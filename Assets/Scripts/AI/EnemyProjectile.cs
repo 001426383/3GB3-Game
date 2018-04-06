@@ -41,5 +41,15 @@ public class EnemyProjectile : MonoBehaviour {
 
             Destroy(gameObject);
         }
+        else if (collision.gameObject.tag == "Environment" || collision.gameObject.tag == "Boundary")
+        {
+            EnvironmentManager environmentScript = collision.gameObject.GetComponent<EnvironmentManager>();
+            LoseEnergy(environmentScript.elasticity);
+        }
+    }
+    void LoseEnergy(float reduction)
+    {
+        projectileMaxTimeOut *= reduction;
+        projectileDamage *= reduction;
     }
 }

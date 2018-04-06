@@ -27,22 +27,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!1 &1285663411534310
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4322907330288612}
-  - component: {fileID: 215419315899571236}
-  m_Layer: 8
-  m_Name: Reflection Probe
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
 --- !u!1 &1311810674318710
 GameObject:
   m_ObjectHideFlags: 0
@@ -54,6 +38,7 @@ GameObject:
   - component: {fileID: 20110135284103692}
   - component: {fileID: 124041645596386880}
   - component: {fileID: 81511428349978384}
+  - component: {fileID: 114735151038558646}
   m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -352,19 +337,6 @@ Transform:
   m_Father: {fileID: 4329800447330078}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4322907330288612
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1285663411534310}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 30, z: 0}
-  m_LocalScale: {x: 40, y: 40, z: 40}
-  m_Children: []
-  m_Father: {fileID: 4329800447330078}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4329800447330078
 Transform:
   m_ObjectHideFlags: 1
@@ -383,7 +355,6 @@ Transform:
   - {fileID: 4457168298380620}
   - {fileID: 4302082786982600}
   - {fileID: 4550973992069728}
-  - {fileID: 4322907330288612}
   - {fileID: 4550150891024590}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -425,7 +396,7 @@ Transform:
   m_LocalScale: {x: 40, y: 40, z: 40}
   m_Children: []
   m_Father: {fileID: 4329800447330078}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4550973992069728
 Transform:
@@ -567,7 +538,7 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 1
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
@@ -1014,7 +985,7 @@ Light:
   m_Type: 2
   m_Color: {r: 0.9411765, g: 0.9075768, b: 0.6366782, a: 1}
   m_Intensity: 2
-  m_Range: 15
+  m_Range: 3.5
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -1034,7 +1005,7 @@ Light:
     m_Bits: 4294967039
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 2
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -1117,6 +1088,18 @@ MonoBehaviour:
   movementAudio: {fileID: 0}
   movingSound: {fileID: 8300000, guid: 72faa234746519348805d31a1fee4758, type: 3}
   pitchRange: 0.01
+--- !u!114 &114735151038558646
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1311810674318710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: c4d759255d4d73546ab2e03744bc0712, type: 2}
 --- !u!114 &114793500540833882
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4589,7 +4572,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 898147461
+  randomSeed: -1769021757
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -8004,38 +7987,6 @@ ReflectionProbe:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1650723183007782}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Type: 0
-  m_Mode: 1
-  m_RefreshMode: 0
-  m_TimeSlicingMode: 0
-  m_Resolution: 128
-  m_UpdateFrequency: 0
-  m_BoxSize: {x: 35, y: 35, z: 35}
-  m_BoxOffset: {x: 0, y: 0, z: 0}
-  m_NearClip: 0.3
-  m_FarClip: 1000
-  m_ShadowDistance: 100
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IntensityMultiplier: 1
-  m_BlendDistance: 1
-  m_HDR: 1
-  m_BoxProjection: 0
-  m_RenderDynamicObjects: 0
-  m_UseOcclusionCulling: 1
-  m_Importance: 1
-  m_CustomBakedTexture: {fileID: 0}
---- !u!215 &215419315899571236
-ReflectionProbe:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1285663411534310}
   m_Enabled: 1
   serializedVersion: 2
   m_Type: 0

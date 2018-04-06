@@ -189,7 +189,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1052476011651896}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -75.69837, y: 2.73094, z: 47.477165}
+  m_LocalPosition: {x: -140, y: 5, z: -140}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4089681761061016}
@@ -428,7 +428,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnerEntity: {fileID: 1141902476686604, guid: 21bed5ec892567b40aa013bd194c882e,
     type: 2}
-  spawnFrequency: 3
+  spawnFrequency: 5
   spawnerHealth: 30
   maxAmount: 3
   currentAmount: 0

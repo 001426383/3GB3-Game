@@ -162,9 +162,9 @@ public class PlayerShoot : MonoBehaviour
         }
         else if (equippedGun == 3) //Laser Launcher
         {
-            fireRate = 1f;
+            fireRate = 0.75f;
             evenSpread = true;
-            spreadMultiplier = 16f;
+            spreadMultiplier = 1f;
             spreadDeviation = 0f;
             isAutomatic = false;
         }
@@ -196,5 +196,9 @@ public class PlayerShoot : MonoBehaviour
                 soundTimer = 0.1f;
             }
         }
+    }
+
+    public int GetGun() {
+        return equippedGun;
     }
 }

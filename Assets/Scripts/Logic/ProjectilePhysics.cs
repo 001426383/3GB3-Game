@@ -10,10 +10,14 @@ public class ProjectilePhysics : MonoBehaviour
     public float projectileMinTimeOut;
     public float projectileMaxTimeOut;
     public float projectileAcceleration;
+    private float originalSpeed;
+    private float originalTimeOut;
+    private float orginalDamage;
+
 
     private Rigidbody pRigidbody;
     Vector3 direction;
-
+    public GameObject currentProjectile;
 
     public AudioSource collisionAudioSource;
     public AudioClip particleEnvironmentSound;
@@ -23,6 +27,10 @@ public class ProjectilePhysics : MonoBehaviour
     {
         //gameObject.timeoutDestructor = projectileTimeOut;
         pRigidbody = GetComponent<Rigidbody>();
+
+        originalSpeed = projectileSpeed;
+        originalTimeOut = projectileMaxTimeOut;
+        orginalDamage = projectileDamage;
         projectileMaxTimeOut = Random.Range(projectileMinTimeOut, projectileMaxTimeOut);
     }
 
@@ -44,6 +52,20 @@ public class ProjectilePhysics : MonoBehaviour
         if (isColliding) return;
         isColliding = true;
         //Debug.Log(gameObject.name + " has collided with " + collision.gameObject.name);
+
+        /*
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Turret" || collision.gameObject.tag == "Spawner")
+        {
+            PlayerShoot playerScript = GameObject.Find("PlayerGroup").GetComponent<PlayerShoot>();
+            if (playerScript.GetGun() == 3)
+            {
+                projectileSpeed = originalSpeed;
+                projectileMaxTimeOut = originalTimeOut;
+                projectileDamage = orginalDamage;
+            }
+        }*/
+
+
         if (collision.gameObject.tag == "Enemy")
         {
             LoseEnergy(0.5f);
@@ -116,6 +138,38 @@ public class ProjectilePhysics : MonoBehaviour
         else if (collision.gameObject.tag == "Health Orb") {
             HealthPack healingScript = collision.gameObject.GetComponent<HealthPack>();
             healingScript.durability -= projectileDamage;
+        }
+
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Turret" || collision.gameObject.tag == "Spawner")
+        {
+            if (gameObject.name == "Player_Projectile_LaserLauncher(Clone)")
+            {
+                if (projectileMaxTimeOut >= 0.25)
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        //Instantiate projectile
+                        GameObject newProjectile = Instantiate(currentProjectile, gameObject.transform.position, Quaternion.identity) as GameObject;
+                        Rigidbody newRB = newProjectile.GetComponent<Rigidbody>();
+                        newProjectile.transform.parent = GameObject.Find("TemporaryEntities").transform; //Put all projectiles in temporary group
+                                                                                                         //newRB.velocity = gameObject.GetComponent<Rigidbody>().velocity;
+
+                        ProjectilePhysics newProjectileScript = newProjectile.GetComponent<ProjectilePhysics>();
+                        newProjectileScript.projectileMinTimeOut = projectileMinTimeOut;
+                        newProjectileScript.projectileMaxTimeOut = projectileMaxTimeOut;
+                        newProjectileScript.projectileDamage = projectileDamage;
+                        //Set the initial direction of the projectile
+                        Vector3 initDirection;
+                        initDirection = gameObject.transform.position - gameObject.transform.forward;
+                        initDirection.y = 0f;
+
+                        Quaternion fireDirection = Quaternion.LookRotation(initDirection);
+                        Quaternion randRotation = Random.rotation;
+                        fireDirection = Quaternion.RotateTowards(fireDirection, randRotation, Random.Range(0.0f, 360.0f));
+                        newRB.AddForce(fireDirection * Vector3.forward, ForceMode.Impulse);
+                    }
+                }
+            }
         }
     }
     void OnTriggerEnter(Collider other)

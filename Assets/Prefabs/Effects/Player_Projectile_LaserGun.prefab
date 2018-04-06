@@ -355,6 +355,7 @@ MonoBehaviour:
   projectileMinTimeOut: 1
   projectileMaxTimeOut: 1
   projectileAcceleration: 0
+  currentProjectile: {fileID: 1807643795163980}
   collisionAudioSource: {fileID: 82430463452587608}
   particleEnvironmentSound: {fileID: 8300000, guid: 3b2c2e0ceb5d51547bc25bcb57cc1863,
     type: 3}
